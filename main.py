@@ -15,6 +15,9 @@ def readPage():
     # 用户取消读取
     if path == '':
         return
+    if suffix not in ['txt', 'json', 'csv', 'xls', 'xlsx']:
+        tk.messagebox.showerror(title='错误', message='不支持的文件格式')
+        return
     for widget in window.winfo_children():
         widget.destroy()
     if suffix == 'txt':
