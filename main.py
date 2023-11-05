@@ -1,8 +1,9 @@
 import tkinter as tk
 from FILE.openFile import openFile
-from FILE.saveFile import saveFile
+from FILE.saveFile import save, saveAs
 from pages.welcome import Welcome
 from pages.txtReader import TxtReader
+from pages.csvReader import CsvReader
 
 window = tk.Tk()
 window.title("文件阅读器")
@@ -21,16 +22,19 @@ def readPage():
     for widget in window.winfo_children():
         widget.destroy()
     if suffix == 'txt':
-        txtReader = TxtReader(path=path, name=name,
-                              save=saveFile, quit=welcomePage)
+        txtReader = TxtReader(
+            path=path, name=name,  quit=welcomePage)
         txtReader.pack(window)
+    if suffix == 'csv':
+        csvReader = CsvReader(path=path, name=name, quit=welcomePage)
+        csvReader.pack(window)
 
 
 def welcomePage():
     global window
     for widget in window.winfo_children():
         widget.destroy()
-    welcome = Welcome(openFile=readPage, saveFile=saveFile, quit=window.quit)
+    welcome = Welcome(openFile=readPage,  quit=window.quit)
     welcome.pack(window)
     window.mainloop()
 
