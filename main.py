@@ -36,8 +36,8 @@ def welcomePage():
         widget.destroy()
     welcome = Welcome(openFile=readPage,  quit=window.quit)
     welcome.pack(window)
-    window.mainloop()
 
 
 if __name__ == "__main__":
     welcomePage()
+    window.mainloop()
