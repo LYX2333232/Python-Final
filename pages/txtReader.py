@@ -48,7 +48,7 @@ class TxtReader:
             master=self.buttonFrame, text='退出', command=self.quit)
 
     def save(self):
-        save(self.path, self.text.get('1.0', 'end'))
+        save(self.path, self.text.get('1.0', 'end'), suffix=self.suffix)
 
     def saveAs(self):
         saveAs(self.text.get('1.0', 'end'), self.suffix)

@@ -1,46 +1,55 @@
 import tkinter as tk
-
-root = tk.Tk()
-root.title("文件阅读器")
-
-frame = tk.Frame(root)
-frame.pack(fill="both", expand=True)
-
-canvas = tk.Canvas(frame)
-# 设置滚动条
-scrollable_frame = tk.Frame(canvas)
-
-scrollable_frame.bind(
-    "<Configure>",
-    lambda e: canvas.configure(
-        scrollregion=canvas.bbox("all")
-    )
-)
+from tkinter import ttk
+import json
 
 
-def _on_mousewheel(event):
-    canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+def build_tree(tree, parent, data):
+    if isinstance(data, dict):
+        for key, value in data.items():
+            item = tree.insert(parent, 'end', text=key)
+            build_tree(tree, item, value)
+    elif isinstance(data, list):
+        for item in data:
+            child = tree.insert(parent, 'end', text=' ')
+            build_tree(tree, child, item)
+    else:
+        tree.insert(parent, 'end', text=data)
 
 
-canvas.bind_all("<MouseWheel>", _on_mousewheel)
+def display_json_tree(data):
+    root = tk.Tk()
+    root.title('JSON Tree')
+
+    tree = ttk.Treeview(root)
+    build_tree(tree, '', data)
+    tree.pack()
+
+    root.mainloop()
 
 
-# 设置横向的滚动条
+json_data = {
+    "name": "John",
+    "age": 30,
+    "cars": [
+        {
+            "name": "Ford",
+            "models": [
+                "Fiesta",
+                "Focus",
+                "Mustang"
+            ]
+        },
+        {
+            "name": "BMW",
+            "models": [
+                "320",
+                "X3",
+                "X5"
+            ]
+        }
+    ]
+}
 
-# 设置滚动条的位置
-canvas.pack(side="left", fill="both", expand=True)
+data = json.loads(json.dumps(json_data))
 
-# 设置画布的位置
-canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
-
-# 设置两行10列的文本框
-for i in range(100):
-    for j in range(10):
-        tk.Entry(master=scrollable_frame, text='hello').grid(
-            row=i, column=j)
-
-scrollable_frame.update_idletasks()  # 更新画布的尺寸
-canvas.config(scrollregion=canvas.bbox("all"))  # 配置画布的滚动区域
-
-
-root.mainloop()
+display_json_tree(data)

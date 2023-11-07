@@ -1,0 +1,25 @@
+{
+    "name": "jquery.iframe-transport.js",
+    "url": "123456",
+    "version": "1.0.0",
+    "description": "jquery.iframe-transport.js",
+    "main": "jquery.iframe-transport.js",
+    "posiotion":{
+        "top":0,
+        "left":0,
+        "style":{
+            "width":100,
+            "height":100,
+            "color":{
+                "red":0,
+                "green":0,
+                "blue":0
+            }
+        },
+        "background":{
+            "red":0,
+            "green":0,
+            "blue":0
+        }
+    }
+}

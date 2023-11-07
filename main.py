@@ -4,6 +4,7 @@ from FILE.saveFile import save, saveAs
 from pages.welcome import Welcome
 from pages.txtReader import TxtReader
 from pages.csvReader import CsvReader
+from pages.jsonReader import JsonReader
 
 window = tk.Tk()
 window.title("文件阅读器")
@@ -16,7 +17,7 @@ def readPage():
     # 用户取消读取
     if path == '':
         return
-    if suffix not in ['txt', 'json', 'csv', 'xls', 'xlsx']:
+    if suffix not in ['txt', 'json', 'csv', 'xls', 'xlsx', 'json']:
         tk.messagebox.showerror(title='错误', message='不支持的文件格式')
         return
     for widget in window.winfo_children():
@@ -28,6 +29,9 @@ def readPage():
     if suffix == 'csv':
         csvReader = CsvReader(path=path, name=name, quit=welcomePage)
         csvReader.pack(window)
+    if suffix == 'json':
+        jsonReader = JsonReader(path=path, quit=welcomePage)
+        jsonReader.pack(window)
 
 
 def welcomePage():
