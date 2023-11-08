@@ -6,15 +6,12 @@
     "main": "jquery.iframe-transport.js",
     "goods": [
         1,
-        2,
-        3,
         4,
         {
             "name": "lyx",
             "age": 18,
             "sex": "男"
-        },
-        233
+        }
     ],
     "posiotion": {
         "top": 0,

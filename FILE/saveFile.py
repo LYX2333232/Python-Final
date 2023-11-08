@@ -1,5 +1,6 @@
 import tkinter as tk
 import csv
+import json
 from tkinter.filedialog import asksaveasfilename
 
 
@@ -40,6 +41,10 @@ def save(path, data, suffix):
             writer = csv.writer(f)
             for row in res:
                 writer.writerow(row)
+    elif suffix == 'json':
+        with open(path, 'w', encoding='UTF-8') as f:
+            # 以格式化的形式写入文件
+            f.write(json.dumps(data, indent=4, ensure_ascii=False))
     tk.messagebox.showinfo(title='提示', message='保存成功')
 
 

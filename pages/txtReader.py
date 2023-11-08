@@ -59,5 +59,5 @@ class TxtReader:
         self.saveAsButton.pack(side='right')
         self.quitButton.pack(side='right')
         window.config(menu=self.menu_bar)
+        self.scrollbar.pack(side='right', fill='y')
         self.text.pack(fill='both', expand=True)
-        # self.scrollbar.pack(side='right', fill='y')
